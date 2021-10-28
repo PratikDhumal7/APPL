@@ -1,1 +1,1 @@
-# APPL - A Deep Learning Library in C
+# Full-and-Final-project-Turf

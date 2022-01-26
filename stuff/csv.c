@@ -12,21 +12,25 @@ struct Matrix* read_csv(char* path){
     struct Matrix * mat = mat_initEmpty();
     fptr = fopen(path, "r");
     if(fptr == NULL){
-	return NULL;
+	    return NULL;
     }
+	long rows = 0, size = 0;
 
     while(fgets(line, BUFFER_SIZE, fptr)){
         line[strlen(line)-1] = '\0';
+        rows++;
 
-	char * vals = strtok(line, ",");
-	char * eptr;
+	    char * vals = strtok(line, ",");
+	    char * eptr;
 
-	while(vals != NULL){
+	    while(vals != NULL){
             double a = strtod(vals, &eptr);
-	    vals = strtok(NULL, ",");
-	    mat_append(mat, 1, &a);
-	}
+	        vals = strtok(NULL, ",");
+	        mat_append(mat, 1, &a);
+	        size++;
+	    }
     }
     // mat_display(mat);
+    mat_reshape(mat, rows, size/rows);
     return mat;
 }
